@@ -6,16 +6,17 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.MultiAutoCompleteTextView;
+
+import com.lipstick.clouset.fragments.FragmentsFactory;
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+	private Fragment[] mFragements;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -29,38 +30,58 @@ public class MainActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        mTitle = getTitle();        
+        initializeFragments();
+        
+        setContentView(R.layout.activity_main);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
+    
+    private void initializeFragments() {
+    	mFragements = FragmentsFactory.getInstance().getFragments();
+    }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+    
+    	if (mFragements != null) {
+	        // update the main content by replacing fragments
+	        FragmentManager fragmentManager = getFragmentManager();
+	        fragmentManager.beginTransaction()
+	                .replace(R.id.container, mFragements[position])
+	                .commit();
+	        
+	        onSectionAttached(position+1);
+    	}
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_mycloset);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+            	mTitle = getString(R.string.title_friendscloset);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+            	mTitle = getString(R.string.title_lendme);
                 break;
+            case 4:
+            	mTitle = getString(R.string.title_letmesee);
+            	break;
+            case 5:
+            	mTitle = getString(R.string.title_chat);
+            	break;
+            case 6:
+            	mTitle = getString(R.string.title_calendar);
+            	break;
         }
     }
 
@@ -79,11 +100,23 @@ public class MainActivity extends Activity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
+            
+//            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                    android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+//            
+//            MultiAutoCompleteTextView textView = (MultiAutoCompleteTextView) menu.findItem(R.id.search).getActionView();
+//            textView.setAdapter(adapter);
+//            textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+            
             restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
     }
+    
+    private static final String[] COUNTRIES = new String[] {
+        "Belgium", "France", "Italy", "Germany", "Spain"
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -96,47 +129,4 @@ public class MainActivity extends Activity
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
 }
