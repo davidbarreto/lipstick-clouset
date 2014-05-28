@@ -134,12 +134,15 @@ public class ChipsMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		
+		Log.i(TAG, "onTouchEvent");
 		if (!isFocused()) {
 			return super.onTouchEvent(event);	
 		}
 		
+		Log.i(TAG, "focused!!");
+		
 		if (event.getAction() == MotionEvent.ACTION_UP) {
-			
+			Log.i(TAG, "x=" + event.getX() + ", y=" + event.getY());
 		}
 		
 		return false;

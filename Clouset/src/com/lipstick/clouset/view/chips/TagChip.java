@@ -37,9 +37,6 @@ public class TagChip implements Chip {
 		int width = (int) mWidth;
 		TextPaint textPaint = mChipAttrs.getTextPaint();
 		
-		Bitmap tmpBitmap = Bitmap.createBitmap(width, height,
-				Bitmap.Config.ARGB_8888);
-		Canvas canvas = new Canvas(tmpBitmap);
 		Drawable background = null;
 		
 		switch (type) {
@@ -57,7 +54,13 @@ public class TagChip implements Chip {
 				break;
 		}
 		
-		background.setBounds(0, 0, width, height);
+		background.setBounds(0, 0, width + height, height);
+		Rect backgroundPadding = new Rect();
+		background.getPadding(backgroundPadding);
+		
+		Bitmap tmpBitmap = Bitmap.createBitmap(width + height, height,
+				Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(tmpBitmap);
 		background.draw(canvas);
 
 		canvas.drawText(
@@ -67,6 +70,13 @@ public class TagChip implements Chip {
 				mChipAttrs.getChipPadding(),
 				getTextYOffset((String) mDisplayText, textPaint, height),
 				textPaint);
+		
+		Drawable delete = mChipAttrs.getChipDeleteDrawable();
+		delete.setBounds(width + backgroundPadding.left,
+                0 + backgroundPadding.top,
+                width + height - backgroundPadding.right,
+                height - backgroundPadding.bottom);
+		delete.draw(canvas);
 		
 		return tmpBitmap;
 	}
