@@ -1,4 +1,4 @@
-package com.lipstick.clouset.providers;
+package com.lipstick.clouset.providers.tags;
 
 import android.app.SearchManager;
 import android.content.ContentProvider;

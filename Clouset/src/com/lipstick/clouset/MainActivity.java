@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.MultiAutoCompleteTextView;
 
 import com.lipstick.clouset.fragments.FragmentsFactory;
 

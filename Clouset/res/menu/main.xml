@@ -2,11 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.lipstick.clouset.MainActivity" >
 
-    <item
-        android:id="@+id/action_example"
-        android:showAsAction="withText|ifRoom"
-        android:title="@string/action_example"/>
-    <item
+<!--     <item -->
+<!--         android:id="@+id/action_example" -->
+<!--         android:showAsAction="withText|ifRoom" -->
+<!--         android:title="@string/action_example"/> -->
+
+    <item android:id="@+id/search"
+          android:title="@string/title_search"
+          android:icon="@android:drawable/ic_menu_search"
+          android:showAsAction="ifRoom"
+          android:actionViewClass="android.widget.SearchView" />
+    
+    <item android:id="@+id/tags"
+        android:title="@string/title_mytags"
+		android:showAsAction="collapseActionView|ifRoom"
+        android:icon="@drawable/ic_action_labels"
+		android:actionLayout="@layout/tags_search_layout" />
+    
+	<item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"

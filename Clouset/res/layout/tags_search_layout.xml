@@ -4,12 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
     
-    <EditText
+<!--     <EditText -->
+<!--         android:id="@+id/txt_search" -->
+<!--         android:hint="@string/tags_search_hint" -->
+<!--         android:inputType="text" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content"         -->
+<!--         /> -->
+
+	<com.lipstick.clouset.view.chips.ChipsMultiAutoCompleteTextView
         android:id="@+id/txt_search"
         android:hint="@string/tags_search_hint"
         android:inputType="text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"        
-        />
+       />
     
 </LinearLayout>

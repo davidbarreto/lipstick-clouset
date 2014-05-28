@@ -2,12 +2,32 @@
 <resources>
 
     <string name="app_name">Clouset</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_feed">Feed</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_mycloset">My Closet</string>
+    <string name="title_mytags">My Tags</string>
+    <string name="title_friendscloset">Friends Closet</string>
+    <string name="title_lendme">Lend me?</string>
+    <string name="title_letmesee">Let me see your Closet?</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_search">Search</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string name="tags_search_hint">Type a tag name&#8230;</string>
+    
+     <!-- Text displayed when the recipientedittextview is not focused. Displays the total number of recipients since the field is shrunk to just display a portion -->
+    <string name="more_string">&#8230;</string>
+
+    <!-- Text displayed when the user long presses on a chip to copy the recipients email address.
+         [CHAR LIMIT=200] -->
+    <string name="copy_email">Copy email address</string>
+    <!-- Text displayed when the user long presses on a chip to copy the recipient's phone number.
+         [CHAR LIMIT=200] -->
+    <string name="copy_number">Copy phone number</string>
+    <!-- Text displayed in the enter key slot when the recipientedittextview has focus.
+         [CHAR LIMIT=12] -->
+    <string name="done">Return</string>
 
 </resources>
